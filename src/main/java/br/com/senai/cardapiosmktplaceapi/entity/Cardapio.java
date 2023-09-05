@@ -2,7 +2,6 @@ package br.com.senai.cardapiosmktplaceapi.entity;
 
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,7 +13,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -23,43 +21,39 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "restaurantes")
-@Entity(name = "Restaurante")
-public class Restaurante {
-
+@Table(name = "cardapios")
+@Entity(name = "Cardapio")
+public class Cardapio {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	@EqualsAndHashCode.Include
 	private Integer id;
-
-	@Size(min = 3, max = 250, message = "O nome do restaurante deve conter entre 3 e 250 caracteres")
-	@NotBlank(message = "O nome do restaurante é obrigatório")
+	
+	@Size(max = 100, message = "O nome do cardápio deve conter no máximo 100 caracteres")
+	@NotBlank(message = "O nome do cardápio é obrigatório")
 	@Column(name = "nome")
 	private String nome;
-
-	@NotBlank(message = "A descrição do restaurante é obrigatório")
+	
+	@NotBlank(message = "A descrição do cardápio é obrigatório")
 	@Column(name = "descricao")
 	private String descricao;
-
-	@NotNull(message = "O status do restaurante é obrigatório")
+	
+	@NotNull(message = "O status da seção é obrigatório")
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "status")
 	private Status status;
-
-	@Embedded
-	@Valid
-	private Endereco endereco;
-
+	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_categoria")
-	@NotNull(message = "A categoria do restaurante é obrigatória")
-	private Categoria categoria;
-
-	public Restaurante() {
+	@JoinColumn(name = "id_restaurante")
+	@NotNull(message = "O restaurante do cardápio é obrigatório")
+	private Restaurante restaurante;
+	
+	public Cardapio() {
 		this.status = Status.A;
 	}
-
+	
 	@Transient
 	public boolean isPersistido() {
 		return getId() != null && getId() > 0;

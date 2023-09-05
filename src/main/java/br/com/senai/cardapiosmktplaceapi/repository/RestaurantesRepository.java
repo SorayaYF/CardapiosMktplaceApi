@@ -28,7 +28,7 @@ public interface RestaurantesRepository extends JpaRepository<Restaurante, Integ
 	
 	@Query(value = "SELECT r "
 			+ "FROM Restaurante r "
-			+ "WHERE Upper(r.nome) = Upper(:nome) ")
+			+ "WHERE Upper(r.nome) = Upper(:nome)")
 	public Restaurante buscarPor(String nome);
 	
 	@Query(value = "SELECT r "
