@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import br.com.senai.cardapiosmktplaceapi.repository.CardapiosRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.CategoriasRepository;
-import br.com.senai.cardapiosmktplaceapi.repository.OpcoesRepository;
 import br.com.senai.cardapiosmktplaceapi.repository.RestaurantesRepository;
 
 @SpringBootApplication
@@ -19,9 +19,9 @@ public class InitApp {
 	
 	@Autowired
 	private RestaurantesRepository restaurantesRepository;
-
+	
 	@Autowired
-	private OpcoesRepository opcoesRepository;
+	private CardapiosRepository cardapiosRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(InitApp.class, args);

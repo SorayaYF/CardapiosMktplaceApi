@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.senai.cardapiosmktplaceapi.entity.Cardapio;
-import br.com.senai.cardapiosmktplaceapi.entity.Categoria;
-import br.com.senai.cardapiosmktplaceapi.entity.Opcao;
 import br.com.senai.cardapiosmktplaceapi.entity.Restaurante;
 import br.com.senai.cardapiosmktplaceapi.entity.enums.Status;
 
@@ -23,8 +21,8 @@ public interface CardapiosRepository extends JpaRepository<Cardapio, Integer>{
 	
 	@Query(value = "SELECT c " 
 			+ "FROM Cardapio c "
-			+ "JOIN FETCH c.restaurante c " 
-			+ "JOIN FETCH c.opcoe oc "
+			+ "JOIN FETCH c.restaurante r " 
+			+ "JOIN FETCH c.opcoes oc "
 			+ "JOIN FETCH oc.opcao o "
 			+ "JOIN FETCH oc.secao s "
 			+ "WHERE c.restaurante = :restaurante "
@@ -38,8 +36,8 @@ public interface CardapiosRepository extends JpaRepository<Cardapio, Integer>{
 	
 	@Query(value = "SELECT c " 
 			+ "FROM Cardapio c "
-			+ "JOIN FETCH c.restaurante c " 
-			+ "JOIN FETCH c.opcoe oc "
+			+ "JOIN FETCH c.restaurante r " 
+			+ "JOIN FETCH c.opcoes oc "
 			+ "JOIN FETCH oc.opcao o "
 			+ "JOIN FETCH oc.secao s "
 			+ "WHERE c.id = :id "
