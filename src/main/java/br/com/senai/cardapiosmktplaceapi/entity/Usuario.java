@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ import lombok.EqualsAndHashCode;
 @Entity(name = "Usuario")
 public class Usuario {
 	
+	@Id
 	@Size(max = 50, message = "O login do usuário não deve conter mais de 50 caracteres")
 	@NotBlank(message = "O login do usuário é obrigatório")
 	@EqualsAndHashCode.Include

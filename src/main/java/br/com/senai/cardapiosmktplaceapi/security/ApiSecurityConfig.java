@@ -46,7 +46,7 @@ public class ApiSecurityConfig {
 		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 		authenticationProvider.setUserDetailsService(service);
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
-		return authenticationProvider();
+		return authenticationProvider;
 	}
 
 	private UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource() {

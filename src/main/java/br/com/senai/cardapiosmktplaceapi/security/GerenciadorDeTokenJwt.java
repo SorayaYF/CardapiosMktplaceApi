@@ -17,10 +17,10 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class GerenciadorDeTokenJwt {
 	
-	@Value("%{spring.jwt.secret}")
+	@Value("${spring.jwt.secret}")
 	private String secret;
 	
-	@Value("%{spring.jwt.ttl-in-millis}")
+	@Value("${spring.jwt.ttl-in-millis}")
 	private int ttlInMillis;
 	
 	private Key getChaveDeAssinatura() {
